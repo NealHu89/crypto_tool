@@ -1,0 +1,25 @@
+打包命令：
+pyinstaller -F -w crypto_tools.py -i E:\Python_code\crypto_tools\v4.0\crypto.ico --add-data sm_lib.dll;.
+
+
+
+
+参考链接：https://blog.csdn.net/qq_43054982/article/details/107941045
+
+方法1. 使用 --add-data
+pyinstaller -F -w crypto_tools.py --add-data sm_lib.dll;.
+
+
+
+方法2. 修改spec文件内data的值
+# 先生成xx.spec文件
+pyinstaller -F xx.py
+# 修改.spec文件, 在datas内添加(资源文件, pathex的相对路径)
+datas=[('xx.dll', '.')]
+# 生成exe
+pyinstaller -F -w xx.spec
+
+
+-F  生成结果是一个exe文件，所有的第三方依赖、资源和代码均被打包进该exe内
+-w  不显示命令行窗口
+-add-data  添加资源文件
